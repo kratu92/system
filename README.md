@@ -6,7 +6,7 @@ db is a simple PHP library to interact with mysql databases.
 
 ## How to use
 
-Download the all the files before executing any script.
+Download all the files before executing any script.
 
 ```bash
 
