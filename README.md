@@ -1,4 +1,4 @@
-# system
+# Debian 11 system and config setup
 Collection of scripts that will allow you to setup a Debian web server.
 
 db is a simple PHP library to interact with mysql databases.
