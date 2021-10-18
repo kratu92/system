@@ -1,16 +1,7 @@
 #!/bin/bash
 
-#Config
-MIN_VERSION="11" # No decimals (Included)
-MAX_VERSION="12" # No decimals (Not included)
-
-# Colors
-BLUE="\033[0;36m"
-GREEN="\033[0;32m"
-RED="\033[1;31m"
-PURPLE="\033[0;35m"
-YELLOW="\033[0;33m"
-NC="\033[0m"
+# Initial config
+. ./inc/init-script.sh
 
 printf "${BLUE}         ╔══════════════════════════════════════════╗${NC}\n"
 printf "${BLUE}         ║ -> KRATU'S DEBIAN SYSTEM SETUP SCRIPT <- ║${NC}\n"
@@ -40,49 +31,12 @@ printf "${PURPLE}├────────────────────
 printf "${PURPLE}│${NC}          ${GREEN}Try not. Do or do not. There is no try.${NC}           ${PURPLE}│${NC}\n"
 printf "${PURPLE}└────────────────────────────────────────────────────────────┘${NC}\n"
 
+
 # Ask for confirmation
-continueScript=false
-until [ "$continueScript" == "true" ]
-do
-	read -r -p "Do you want to continue? [y/N] " response
-	res=${response,,} # tolower
+. ./inc/ask-for-confirmation.sh
 
-	case $response in
-		yes|y)
-			continueScript=true
-			;;
-		no|n|"")
-			printf "${RED}Execution was cancelled${NC}\n"
-			exit 1
-			;;
-		*)
-			printf "${RED}Invalid response${NC}\n"
-			;;
-	esac
-done
-
-# Script must be run by root
-if [ "$EUID" -ne 0 ]
-	then printf "${RED}ERROR: You must be root to run this script${NC}\n"
-	exit 1
-# No parameters allowed
-elif [ $# != 0 ]
-	then printf "${RED}ERROR: This script does not accept any parameters${NC}\n"
-	exit 1
-#Check version file
-elif [ -f /etc/debian_version==false ] 
-	then printf "${RED}ERROR: Debian version file not found${NC}\n"
-	exit 1
-fi
-
-# Make sure it is a tested version
-debianVersion=$(echo "$(cat /etc/debian_version)" | sed 's/\.[0-9]*//g')
-printf "${GREEN}Current Debian version: $debianVersion${NC}\n"
-
-if [[ debianVersion -lt MIN_VERSION ]] || [[ debianVersion -ge MAX_VERSION ]]
-	then printf "${RED}ERROR: Current debian version has not been tested${NC}\n"
-	exit 1
-fi
+# Previous checks
+. ./inc/previous-checks.sh
 
 # Update and upgrade
 printf "${GREEN}Updating and upgrading${NC}\n"
@@ -91,11 +45,13 @@ sudo apt upgrade -y
 
 # Install required packages
 printf "${GREEN}Installing required packages${NC}\n"
-sudo apt install openssh-server -y
-sudo apt install net-tools -y
-sudo apt install git -y
-sudo apt install ufw -y
-sudo apt install unattended-upgrades -y
+sudo apt install \
+	openssh-server \
+	net-tools \
+	git \
+	ufw \
+	unattended-upgrades \
+	-y
 
 # Auto updates
 printf "${GREEN}Setting up auto updates${NC}\n"
@@ -137,7 +93,6 @@ aliasLine="if [ -f ~/.kratu_aliases ]; then . ~/.kratu_aliases; fi; # Do not mod
 sed -i "/kratu_aliases/d" $userDir/.bashrc  # Remove previously added lines
 echo "$aliasLine" >> $userDir/.bashrc
 cp ./.kratu_aliases $userDir/.kratu_aliases # Create alias file
-
 
 # Setting up ssh
 printf "${GREEN}Setting up ssh${NC}\n"
