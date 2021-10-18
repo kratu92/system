@@ -42,10 +42,9 @@ curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
 # Verify that the downloaded file contains the proper key
 result=`gpg --dry-run --quiet --import --import-options import-show $keyringFile`
 
-fingerprint=`[[ \
-		"$(curl https://nginx.org/en/linux_packages.html)" \
-		=~ (Debian.* ([0-9A-F]{40})) \
-	]] && echo "${BASH_REMATCH[2]}"`
+fingerprint=`[[ "$(curl https://nginx.org/en/linux_packages.html)" \
+		=~ (Debian.* ([0-9A-F]{40}))  ]] \
+	&& echo "${BASH_REMATCH[2]}"`
 
 if [[ "$result" != *"$fingerprint"* ]]; then
 	printf "${RED}Fingerprint does not match${NC}\n"
@@ -65,13 +64,14 @@ echo "deb [signed-by=$keyringFile] \
 echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" \
 	| sudo tee /etc/apt/preferences.d/99nginx
 
+# Update
 printf "${GREEN}Updating${NC}\n"
 sudo apt update
 
+# Install nginx
 printf "${GREEN}Installing nginx${NC}\n"
 sudo apt install nginx -y
 
+# Start server
 printf "${GREEN}NGINX installed. Starting server${NC}\n"
 sudo systemctl start nginx
-
-
