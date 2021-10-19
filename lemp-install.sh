@@ -19,7 +19,8 @@ printf "${GREEN}Updating and upgrading${NC}\n"
 sudo apt update -y
 sudo apt upgrade -y
 
-printf "${BLUE}------> 1- NGINX Installation${NC}\n"
+# ---------------- > NGINX
+printf "${BLUE}------> 1.- NGINX Installation${NC}\n"
 
 # Install required packages
 printf "${GREEN}Installing required packages${NC}\n"
@@ -30,6 +31,7 @@ sudo apt install \
         lsb-release \
         debian-archive-keyring \
         -y
+# lsb_releases & ca-certificates also needed for PHP
 
 # Import official nginx signing key to let apt verify packages authenticity
 printf "${GREEN}Importing official nginx signing key${NC}\n"
@@ -75,3 +77,59 @@ sudo apt install nginx -y
 # Start server
 printf "${GREEN}NGINX installed. Starting server${NC}\n"
 sudo systemctl start nginx
+
+printf "${RED}TO DO: Setup nginx...${NC}\n"
+
+# ---------------- > MARIA DB
+printf "${BLUE}------> 2.- MariaDB Installation${NC}\n"
+
+# Install required packages
+printf "${GREEN}Installing required packages${NC}\n"
+sudo apt install mariadb-server -y
+
+# Configure MariaDB
+printf "${GREEN}Configuring MariaDB${NC}\n"
+sudo mysql_secure_installation
+
+printf "${GREEN}MariaDB was installed and configured${NC}\n"
+
+# ---------------- > PHP-FPM
+printf "${BLUE}------> 3.- PHP-FPM Installation${NC}\n"
+
+# Install required packages
+printf "${GREEN}Installing required packages${NC}\n"
+sudo apt install \
+	wget \
+	apt-transport-https \
+	-y
+
+printf "${GREEN}Downloading Sury PPA for PHP 8 package${NC}\n"
+# Repository key
+sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+
+# Add APT repository
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | \
+	sudo tee /etc/apt/sources.list.d/php.list
+
+# Update
+printf "${GREEN}Updating${NC}\n"
+sudo apt update
+
+# Install PHP
+printf "${GREEN}Installing PHP-FPM${NC}\n"
+sudo apt install php8.0-fpm -y
+
+php -v
+
+printf "${GREEN}Installing extensions${NC}\n"
+sudo apt install php8.0-{bcmath,cli,curl,gd,intl,mbstring,mysql,soap,xml,zip} -y
+
+printf "${RED}TO DO: Setup php...${NC}\n"
+printf "${GREEN}PHP-FPM was installed and configured${NC}\n"
+
+printf "${BLUE}------> Restarting servers${NC}\n"
+systemctl restart nginx
+systemctl restart php8.0-fpm
+systemctl restart mysql
+
+printf "${GREEN}LEMP server installation is complete${NC}\n"
