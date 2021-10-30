@@ -89,6 +89,7 @@ cp ./nginx/nginx.conf "$nginxConfFile"
 nginxDefaultDir="/usr/share/nginx/html/"
 cp ./nginx/default.conf "/etc/nginx/conf.d/default.conf"
 
+cp ./templates/403.html   "${nginxDefaultDir}404.html"
 cp ./templates/404.html   "${nginxDefaultDir}404.html"
 cp ./templates/50x.html   "${nginxDefaultDir}50x.html"
 cp ./templates/index.html "${nginxDefaultDir}index.html"
