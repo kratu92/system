@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Kratu's projects - coaru.com</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+		* {
+			box-sizing: border-box;
+		}
+		body {
+			background-color: #050c0f;
+			padding-top: 10px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			margin: 0;
+			overflow: hidden;
+		}
+		h1 {
+			font-family: 'Press Start 2P', sans-serif;
+			font-size: 1.5rem;
+			letter-spacing: 2px;
+			text-align: center;
+			margin-top: 0;
+			margin-bottom: 60px;
+			color: #1992cc;
+		}
+		.baby-yoda-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.baby-yoda-container .ship {
+			position: relative;
+			background-color: #111711;
+			width: 300px;
+			height: 193px;
+			border-top: 10px solid #2d3749;
+			border-left: 10px solid #2d3749;
+			border-right: 10px solid #2d3749;
+			border-radius: 150px 150px 0 0;
+			animation: 4s the-force ease-in-out infinite;
+		}
+		.baby-yoda-container .ship:before,
+		.baby-yoda-container .ship:after {
+			content: '';
+			position: absolute;
+			width: 10px;
+			height: 55px;
+			background-color: #224d4a;
+		}
+		.baby-yoda-container .ship:before {
+			bottom: -20px;
+			left: -10px;
+		}
+		.baby-yoda-container .ship:after {
+			top: 148px;
+			right: -10px;
+		}
+		.baby-yoda-container .baby-yoda {
+			position: relative;
+			top: 50px;
+		}
+		.baby-yoda-container .head {
+			background-color: #78ac39;
+			width: 120px;
+			height: 75px;
+			margin: 0px auto;
+			border-top-left-radius: 40px 30px;
+			border-top-right-radius: 40px 30px;
+		}
+		.baby-yoda-container .face {
+			position: relative;
+		}
+		.baby-yoda-container .eyes {
+			position: relative;
+			display: flex;
+			justify-content: space-around;
+			padding-top: 10px;
+		}
+		.baby-yoda-container .eyes:after {
+			content: '';
+			position: absolute;
+			top: 16px;
+			background-color: #78ac39;
+			width: 100%;
+			height: 1px;
+			transform-origin: top;
+			animation: 2s eyes-close linear infinite alternate;
+		}
+		.baby-yoda-container .eye {
+			position: relative;
+			background-color: #111812;
+			width: 35px;
+			height: 35px;
+			border-radius: 20px;
+			margin: 10px;
+			margin-bottom: 0;
+		}
+		.baby-yoda-container .eye:after {
+			content: '';
+			position: absolute;
+			right: 8px;
+			top: 10px;
+			background-color: #c6ac63;
+			width: 5px;
+			height: 5px;
+			border-radius: 50%;
+		}
+		.baby-yoda-container .nose {
+			position: relative;
+			top: -5px;
+			width: 10px;
+			height: 10px;
+			background-color: #62872c;
+			margin: 0 auto;
+			transform: rotate(45deg);
+		}
+		.baby-yoda-container .nose:before {
+			display: block;
+			content: '';
+			position: relative;
+			width: 10px;
+			height: 10px;
+			background-color: #62872c;
+			border-radius: 5px;
+			top: 5px;
+			box-shadow: 5px -5px #62872c;
+		}
+		.baby-yoda-container .ears {
+			position: absolute;
+			width: 100%;
+		}
+		.baby-yoda-container .ear {
+			margin-top: 15px;
+			padding-top: 15px;
+			position: absolute;
+			background-color: #78ac39;
+			width: 120px;
+			height: 60px;
+			overflow: hidden;
+		}
+		.baby-yoda-container .ear:after {
+			position: relative;
+			display: block;
+			content: '';
+			background-color: #698a20;
+			width: 100px;
+			height: 80px;
+		}
+		.baby-yoda-container .ear.left {
+			left: -110px;
+			border-bottom-left-radius: 120px 60px;
+		}
+		.baby-yoda-container .ear.left:after {
+			border-top-right-radius: 20px;
+		}
+		.baby-yoda-container .ear.right {
+			right: -110px;
+			border-bottom-right-radius: 120px 60px;
+		}
+		.baby-yoda-container .ear.right:after {
+			right: -20px;
+			border-top-left-radius: 20px;
+		}
+		.baby-yoda-container .scarf {
+			position: relative;
+			margin: -2px auto 0;
+			width: 160px;
+			height: 70px;
+			background-color: #1b4658;
+		}
+		.baby-yoda-container .scarf:after {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 35px;
+			background-color: #268984;
+		}
+		.baby-yoda-container .front-ship {
+			overflow: hidden;
+			position: relative;
+			height: 200px;
+			margin-top: 38px;
+			border-radius: 0 0 120px 120px;
+			background-color: #111711;
+		}
+		.baby-yoda-container .front-ship .top {
+			position: relative;
+			height: 50px;
+			width: 100%;
+			background-color: #445f52;
+		}
+		.baby-yoda-container .front-ship .top:before {
+			content: '';
+			position: absolute;
+			width: 40%;
+			height: 30px;
+			background-color: #698577;
+			left: 50%;
+			bottom: 0;
+			transform: translateX(-50%);
+		}
+		.baby-yoda-container .front-ship .top:after {
+			content: '';
+			position: absolute;
+			width: 18px;
+			height: 18px;
+			top: 26px;
+			left: 50%;
+			background-color: #bdcaa6;
+			transform: translateX(-50%);
+			box-shadow: -35px 0 #bdcaa6, 35px 0 #bdcaa6;
+		}
+		.baby-yoda-container .bottom {
+			position: relative;
+			padding-top: 30px;
+			background-color: #39473e;
+			height: 100%;
+		}
+		.baby-yoda-container .bottom:after {
+			content: '';
+			position: absolute;
+			width: 130px;
+			height: 130px;
+			border-radius: 50%;
+			right: 0px;
+			bottom: -10px;
+			background-color: #3e5555;
+		}
+		.baby-yoda-container .bottom .title {
+			letter-spacing: 1px;
+			font-size: 1rem;
+			margin-top: 0px;
+			text-align: center;
+			font-family: 'Press Start 2P', sans-serif;
+		}
+		.baby-yoda-container .bottom .title a {
+			text-decoration: none;
+			color: inherit;
+		}
+		.baby-yoda-container .bottom .title span {
+			position: relative;
+			display: block;
+			font-size: 0.7rem;
+		}
+		.baby-yoda-container .bottom .title span:before {
+			content: '';
+			position: absolute;
+			width: 64px;
+			height: 3px;
+			background-color: #000;
+			top: 7px;
+			left: 54%;
+			box-shadow: -88px 0 0;
+		}
+		.baby-yoda-container .ship-shadow {
+			position: relative;
+			z-index: -1;
+			transform: translateY(150%);
+			width: 280px;
+			height: 100px;
+			background-color: #333;
+			border-radius: 50%;
+			opacity: 0.5;
+			animation: 4s shadow-move ease-in-out infinite;
+			filter: blur(1px);
+		}
+		@-moz-keyframes shadow-move {
+			50% {
+				background-color: #666;
+				transform: scale(1.1) translateY(150%);
+				filter: blur(3px);
+				opacity: 0.45;
+			}
+		}
+		@-webkit-keyframes shadow-move {
+			50% {
+				background-color: #666;
+				transform: scale(1.1) translateY(150%);
+				filter: blur(3px);
+				opacity: 0.45;
+			}
+		}
+		@-o-keyframes shadow-move {
+			50% {
+				background-color: #666;
+				transform: scale(1.1) translateY(150%);
+				filter: blur(3px);
+				opacity: 0.45;
+			}
+		}
+		@keyframes shadow-move {
+			50% {
+				background-color: #666;
+				transform: scale(1.1) translateY(150%);
+				filter: blur(3px);
+				opacity: 0.45;
+			}
+		}
+		@-moz-keyframes the-force {
+			50% { transform: translateY(-20%); }
+		}
+		@-webkit-keyframes the-force {
+			50% { transform: translateY(-20%); }
+		}
+		@-o-keyframes the-force {
+			50% { transform: translateY(-20%); }
+		}
+		@keyframes the-force {
+			50% { transform: translateY(-20%); }
+		}
+		@-moz-keyframes eyes-close {
+			10% { transform: scaleY(0); }
+			12%, 14% { transform: scaleY(45); }
+			14% { transform: scaleY(0); }
+		}
+		@-webkit-keyframes eyes-close {
+			10% { transform: scaleY(0); }
+			12%, 14% { transform: scaleY(45); }
+			14% { transform: scaleY(0); }
+		}
+		@-o-keyframes eyes-close {
+			10% { transform: scaleY(0); }
+			12%, 14% { transform: scaleY(45); }
+			14% { transform: scaleY(0); }
+		}
+		@keyframes eyes-close {
+			10% { transform: scaleY(0); }
+			12%, 14% { transform: scaleY(45); }
+			14% { transform: scaleY(0); }
+		}
+	</style>
+</head>
+<body>
+	<h1>Kratu's projects</h1>
+
+	<div class="baby-yoda-container">
+		<div class="ship">
+			<div class="force-container">
+				<div class="baby-yoda">
+					<div class="head">
+						<div class="face">
+							<div class="ears">
+								<div class="ear left"></div>
+								<div class="ear right"></div>
+							</div>
+							<div class="eyes">
+								<div class="eye"></div>
+								<div class="eye"></div>
+							</div>
+							<div class="nose"></div>
+						</div>
+					</div>
+					<div class="scarf"></div>
+				</div>
+				<div class="front-ship">
+					<div class="top"></div>
+					<div class="bottom">
+						<h2 class="title">
+							<a href="https://coaru.com">coaru.com</a>
+						</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ship-shadow"></div>
+	</div>
+</body>
+</html>

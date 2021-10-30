@@ -78,7 +78,16 @@ sudo apt install nginx -y
 printf "${GREEN}NGINX installed. Starting server${NC}\n"
 sudo systemctl start nginx
 
-printf "${RED}TO DO: Setup nginx...${NC}\n"
+printf "${RED}Seting up nginx...${NC}\n"
+nginxConfFile="/etc/nginx/nginx.conf";
+if [[ -f "$nginxConfFile" ]]; then
+        mv "$nginxConfFile" "$nginxConfFile.bak"
+fi
+cp ./nginx/nginx.conf "$nginxConfFile"
+nginxDefaultDir="/usr/share/nginx/html/"
+cp ./templates/404.html   "${nginxDefaultDir}404.html"
+cp ./templates/500.html   "${nginxDefaultDir}50x.html"
+cp ./templates/index.html "${nginxDefaultDir}index.html"
 
 # ---------------- > MARIA DB
 printf "${BLUE}------> 2.- MariaDB Installation${NC}\n"
