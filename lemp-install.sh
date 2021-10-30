@@ -80,19 +80,26 @@ sudo systemctl start nginx
 
 # Setup nginx
 printf "${GREEN}Seting up nginx...${NC}\n"
-nginxConfFile="/etc/nginx/nginx.conf";
+
+nginxDir="/etc/nginx/"
+nginxConfDir="${nginxDir}conf.d/"
+nginxConfFile="${nginxDir}nginx.conf"
+nginxDefaultDir="/usr/share/nginx/html/"
+
 if [[ -f "${nginxConfFile}" ]]; then
-        mv "${nginxConfFile}" "${nginxConfFile}.bak"
+        \mv "${nginxConfFile}" "${nginxConfFile}.bak"
 fi
 
-cp ./nginx/nginx.conf "$nginxConfFile"
-nginxDefaultDir="/usr/share/nginx/html/"
-cp ./nginx/default.conf "/etc/nginx/conf.d/default.conf"
+\cp ./nginx/nginx.conf    "${nginxConfFile}"
+\cp ./nginx/default.conf  "${nginxConfDir}"
+\cp ./nginx/security.inc  "${nginxConfDir}"
+\cp ./nginx/logging.inc   "${nginxConfDir}"
+\cp ./nginx/wordpress.inc "${nginxConfDir}"
 
-cp ./templates/403.html   "${nginxDefaultDir}404.html"
-cp ./templates/404.html   "${nginxDefaultDir}404.html"
-cp ./templates/50x.html   "${nginxDefaultDir}50x.html"
-cp ./templates/index.html "${nginxDefaultDir}index.html"
+\cp ./templates/403.html   "${nginxDefaultDir}404.html"
+\cp ./templates/404.html   "${nginxDefaultDir}404.html"
+\cp ./templates/50x.html   "${nginxDefaultDir}50x.html"
+\cp ./templates/index.html "${nginxDefaultDir}index.html"
 
 sudo systemctl restart nginx
 
@@ -140,8 +147,7 @@ php -v
 printf "${GREEN}Installing extensions${NC}\n"
 sudo apt install php8.0-{bcmath,cli,curl,gd,intl,mbstring,mysql,soap,xml,zip} -y
 
-printf "${RED}TO DO: Setup php...${NC}\n"
-printf "${GREEN}PHP-FPM was installed and configured${NC}\n"
+printf "${GREEN}PHP-FPM was installed${NC}\n"
 
 printf "${BLUE}------> Restarting servers${NC}\n"
 systemctl restart nginx
