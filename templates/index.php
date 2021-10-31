@@ -20,7 +20,7 @@
 		<div style="color:#ffffff">
 			<h1>Kratu's projects</h1>
 			<p class="text-center">Server block is ready!</p>
-			<p class="text-center">User: <strong><?php echo `whoami`; ?>></strong></p>
+			<p class="text-center">User: <strong><?php echo `whoami`; ?></strong></p>
 			<p class="text-center"><small><a href="https://coaru.com" target="_blank">coaru.com</a></small></p>
 		</div>
 	</div>
