@@ -32,7 +32,7 @@ printf "${PURPLE}│${NC}          ${GREEN}Try not. Do or do not. There is no tr
 printf "${PURPLE}└────────────────────────────────────────────────────────────┘${NC}\n"
 
 # Ask for confirmation
-. ./inc/ask-for-confirmation.sh
+confirm -e
 
 # Previous checks
 previousChecks -rpv

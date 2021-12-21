@@ -9,7 +9,7 @@ printf "${BLUE} ║ -> KRATU'S LEMP SERVER INSTALLATION SCRIPT <- ║${NC}\n"
 printf "${BLUE} ╚═══════════════════════════════════════════════╝${NC}\n"
 
 # Ask for confirmation
-. ./inc/ask-for-confirmation.sh
+confirm -e
 
 # Previous checks
 previousChecks -rpv

@@ -10,7 +10,7 @@ printf "${BLUE} ║ -> KRATU'S MYSQL DB AND USER CREATE SCRIPT <- ║${NC}\n"
 printf "${BLUE} ╚═══════════════════════════════════════════════╝${NC}\n"
 
 # Ask for confirmation
-. ./inc/ask-for-confirmation.sh
+confirm -e
 
 # Previous checks
 previousChecks -rv

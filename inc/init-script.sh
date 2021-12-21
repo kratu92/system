@@ -94,3 +94,61 @@ checkNoParams() {
         	exit 1
 	fi
 }
+
+###########################################################
+# CONFIRM
+# Prompts the user with a question to confirm or deny
+# By default the shown text is: "Do you want to continue?"
+# VALID RESPONSES:
+#	"y|Y|yes|YES" To confirm
+#	"n|N|no|NO"   To deny
+# FLAGS:
+#	-t "text" Set the text that will be prompted to
+#	          the user.
+#	-e        Define whether to exit if the user does
+#	          not confirm
+# RETURN:
+#	0 The user did not confirm
+#	1 The user did confirm
+###########################################################
+confirm() {
+	local OPTIND
+
+        promptText="Do you want to continue?"
+	exitFlag=false
+
+        while getopts ":et:" flag; do
+                case "${flag}" in
+                        e) exitFlag=true;;
+                        t) promptText=$OPTARG ;;
+                        v) checkDebianVersionFlag=true;;
+                        \?|*)  printf "${RED}Invalid option -${flag}${NC}\n";;
+                esac
+        done
+
+	confirmed=false
+
+	until [ "$confirmed" == "true" ]
+	do
+        	read -r -p "${promptText} [y/N] " response
+        	res=${response,,} # tolower
+
+        	case $res in
+                	yes|y)
+                        	confirmed=true
+				return 0 # 0 = true
+                        	;;
+                	no|n|"")
+				if $exitFlag; then 
+                        		printf "${RED}Execution was cancelled${NC}\n"
+                        		exit 1
+				else
+					return 1 # 1 = false
+				fi
+                        	;;
+                	*)
+                        	printf "${RED}Invalid response, please try again${NC}\n"
+                        	;;
+        	esac
+	done
+}

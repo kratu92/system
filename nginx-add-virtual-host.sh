@@ -10,7 +10,7 @@ printf "${BLUE} ║  -> KRATU'S NGINX NEW VIRTUAL HOST SCRIPT <-  ║${NC}\n"
 printf "${BLUE} ╚═══════════════════════════════════════════════╝${NC}\n"
 
 # Ask for confirmation
-. ./inc/ask-for-confirmation.sh
+confirm -e
 
 # Previous checks
 previousChecks -rpv
@@ -37,7 +37,7 @@ done
 # Confirm selected data
 echo "Chosen username: ${username}"
 echo "Chosen domain: ${domain}"
-. ./inc/ask-for-confirmation.sh
+confirm -e
 
 sudo adduser $username
 
