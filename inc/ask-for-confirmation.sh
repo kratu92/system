@@ -7,7 +7,7 @@ do
         read -r -p "Do you want to continue? [y/N] " response
         res=${response,,} # tolower
 
-        case $response in
+        case $res in
                 yes|y)
                         continueScript=true
                         ;;
