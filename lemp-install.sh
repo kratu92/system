@@ -12,7 +12,7 @@ printf "${BLUE} ╚════════════════════�
 . ./inc/ask-for-confirmation.sh
 
 # Previous checks
-. ./inc/previous-checks.sh
+previousChecks -rpv
 
 # Update and upgrade
 printf "${GREEN}Updating and upgrading${NC}\n"

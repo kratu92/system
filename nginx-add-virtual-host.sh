@@ -13,7 +13,7 @@ printf "${BLUE} ╚════════════════════�
 . ./inc/ask-for-confirmation.sh
 
 # Previous checks
-. ./inc/previous-checks.sh
+previousChecks -rpv
 
 # Make sure nginx is installed
 ! test -x /usr/sbin/nginx \

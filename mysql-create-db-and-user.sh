@@ -13,15 +13,31 @@ printf "${BLUE} ╚════════════════════�
 . ./inc/ask-for-confirmation.sh
 
 # Previous checks
-. ./inc/previous-checks.sh
+previousChecks -rv
 
 # Make sure mysql is installed
 ! test -x /usr/sbin/mysqld \
         && printf "${RED}Error: nginx is not installed${NC}\n" \
         && exit 1
 
+# Check arguments
+if [ -z "$1" ]; then
+	db=""
+	user=""
+	pass=""
+else
+	if [ "$#" -ne 3 ]; then 
+		printf "${RED}Error: Invalid number of arguments supplied${NC}\n"
+		printf "${YELLOW}Number of arguments allowed: 0 or 3 (db, user, password)${NC}\n"
+		exit 2
+	fi
+
+	db=$1
+	user=$2
+	pass=$3
+fi
+
 # Ask for a DB name
-db=""
 until [ "${db}" != "" ]
 do
         read -p "Set a name for the new database: " db
@@ -29,7 +45,6 @@ do
 done
 
 # Ask for a username
-user=""
 until [ "${user}" != "" ]
 do
         read -p "Set a username: " user
@@ -37,7 +52,6 @@ do
 done
 
 # Ask for password
-pass=""
 until [ "${pass}" != "" ]
 do
         read -s -p "Set a password for the user ${user}: " pass

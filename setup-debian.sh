@@ -31,12 +31,11 @@ printf "${PURPLE}├────────────────────
 printf "${PURPLE}│${NC}          ${GREEN}Try not. Do or do not. There is no try.${NC}           ${PURPLE}│${NC}\n"
 printf "${PURPLE}└────────────────────────────────────────────────────────────┘${NC}\n"
 
-
 # Ask for confirmation
 . ./inc/ask-for-confirmation.sh
 
 # Previous checks
-. ./inc/previous-checks.sh
+previousChecks -rpv
 
 # Update and upgrade
 printf "${GREEN}Updating and upgrading${NC}\n"
