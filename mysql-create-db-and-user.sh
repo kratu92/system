@@ -3,8 +3,6 @@
 # Initial config
 . ./inc/init-script.sh
 
-PHP_VERSION="8.0"
-
 printf "${BLUE} ╔═══════════════════════════════════════════════╗${NC}\n"
 printf "${BLUE} ║ -> KRATU'S MYSQL DB AND USER CREATE SCRIPT <- ║${NC}\n"
 printf "${BLUE} ╚═══════════════════════════════════════════════╝${NC}\n"
