@@ -27,7 +27,7 @@ else
 	if [ "$#" -ne 3 ]; then 
 		printf "${RED}Error: Invalid number of arguments supplied${NC}\n"
 		printf "${YELLOW}Number of arguments allowed: 0 or 3 (db, user, password)${NC}\n"
-		exit 2
+		exit 1
 	fi
 
 	db=$1
@@ -67,6 +67,13 @@ do
 		fi
 	fi
 done
+
+# Confirm selected data
+echo "The new database will be created with the following data:"
+printf "${WHITE}- database name: ${PURPLE}${db}${NC}\n"
+printf "${WHITE}- username: ${PURPLE}${user}${NC}\n"
+
+confirm -e
 
 query1="CREATE DATABASE IF NOT EXISTS ${db};"
 query2="CREATE USER IF NOT EXISTS '${user}'@'%' IDENTIFIED BY '${pass}';"
