@@ -64,4 +64,4 @@ sql="${query1} ${query2} ${query3} ${query4}"
 printf "${GREEN}You will be asked to introduce MySQL's root password${NC}\n"
 `command -v mysql` -u root -p -e "${sql}"
 
-printf "${GREEN}MySQL user and database where removed${NC}\n"
+printf "${GREEN}MySQL user ${PURPLE}${user}${GREEN} and database ${PURPLE}${db}${GREEN} where removed${NC}\n"
