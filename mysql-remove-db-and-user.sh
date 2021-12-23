@@ -8,9 +8,7 @@
 ################################################
 mySQLRemoveDbAndUser() {
 
-	printf "${BLUE} ╔═══════════════════════════════════════════════╗${NC}\n"
-	printf "${BLUE} ║ -> KRATU'S MYSQL DB AND USER REMOVE SCRIPT <- ║${NC}\n"
-	printf "${BLUE} ╚═══════════════════════════════════════════════╝${NC}\n"
+	title "KRATU'S MYSQL DB AND USER REMOVE SCRIPT"
 
 	# Ask for confirmation
 	confirm -e

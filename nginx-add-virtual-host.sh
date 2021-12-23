@@ -5,9 +5,7 @@
 
 PHP_VERSION="8.0"
 
-printf "${BLUE} ╔═══════════════════════════════════════════════╗${NC}\n"
-printf "${BLUE} ║  -> KRATU'S NGINX NEW VIRTUAL HOST SCRIPT <-  ║${NC}\n"
-printf "${BLUE} ╚═══════════════════════════════════════════════╝${NC}\n"
+title "KRATU'S NGINX NEW VIRTUAL HOST SCRIPT"
 
 # Ask for confirmation
 confirm -e

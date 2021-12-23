@@ -153,3 +153,31 @@ confirm() {
         	esac
 	done
 }
+
+###########################################################
+# title()
+# PARAMS:
+# 	$1: text to print
+# Echoes the text inside a colourful box
+###########################################################
+title() {
+	#No params
+	if [ $# == 0 ]; then
+		text=""
+	# Get the first param
+	else
+		text=$1
+	fi
+
+	hLen=$((`expr length "$text"` + 8))
+
+	horizontalLine=""
+	for ((c=1; c<=hLen; c++))
+	do
+		horizontalLine+="═"
+	done
+
+	printf "${BLUE} ╔${horizontalLine}╗${NC}\n"
+	printf "${BLUE} ║ -> ${PURPLE}${text}${BLUE} <- ║${NC}\n"
+	printf "${BLUE} ╚${horizontalLine}╝${NC}\n"
+}

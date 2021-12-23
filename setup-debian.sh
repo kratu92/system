@@ -3,9 +3,8 @@
 # Initial config
 . ./inc/init-script.sh
 
-printf "${BLUE}         ╔══════════════════════════════════════════╗${NC}\n"
-printf "${BLUE}         ║ -> KRATU'S DEBIAN SYSTEM SETUP SCRIPT <- ║${NC}\n"
-printf "${BLUE}         ╚══════════════════════════════════════════╝${NC}\n"
+title "KRATU'S DEBIAN SYSTEM SETUP SCRIPT"
+
 printf "${PURPLE}┌────────────────────────────────────────────────────────────┐${NC}\n"
 printf "${PURPLE}│${NC}                    ${YELLOW}BEWARE YOUNG PADAWAN${NC}                    ${PURPLE}│${NC}\n"
 printf "${PURPLE}│${NC}     ${YELLOW}You are about to modify your server configuration.${NC}     ${PURPLE}│${NC}\n"

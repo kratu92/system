@@ -8,9 +8,7 @@
 ############################################
 mySQLCreateDbAndUser() {
 
-	printf "${BLUE} ╔═══════════════════════════════════════════════╗${NC}\n"
-	printf "${BLUE} ║ -> KRATU'S MYSQL DB AND USER CREATE SCRIPT <- ║${NC}\n"
-	printf "${BLUE} ╚═══════════════════════════════════════════════╝${NC}\n"
+	title "KRATU'S MYSQL DB AND USER CREATE SCRIPT"
 
 	# Ask for confirmation
 	confirm -e

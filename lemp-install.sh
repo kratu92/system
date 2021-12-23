@@ -3,10 +3,7 @@
 # Initial config
 . ./inc/init-script.sh
 
-
-printf "${BLUE} ╔═══════════════════════════════════════════════╗${NC}\n"
-printf "${BLUE} ║ -> KRATU'S LEMP SERVER INSTALLATION SCRIPT <- ║${NC}\n"
-printf "${BLUE} ╚═══════════════════════════════════════════════╝${NC}\n"
+title "KRATU'S LEMP SERVER INSTALLATION SCRIPT"
 
 # Ask for confirmation
 confirm -e
