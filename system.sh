@@ -20,6 +20,8 @@ mainMenu() {
 
 	title "KRATU'S SYSTEM SCRIPTS"
 
+	previousChecks -rpv
+
 	printf "${BLUE} ┌────────────────────────────────────────────────────────────┐${NC}\n"
 	printf "${BLUE} │${NC} ${YELLOW}--> CHOOSE YOUR OPTION${NC}                                     ${BLUE}│${NC}\n"
 	printf "${BLUE} ├────────────────────────────────────────────────────────────┤${NC}\n"
