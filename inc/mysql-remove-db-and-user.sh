@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Initial config
-. ./inc/init-script.sh
-
 ################################################
 # MySQL Remove Database and User
 ################################################
@@ -11,7 +8,7 @@ mySQLRemoveDbAndUser() {
 	title "KRATU'S MYSQL DB AND USER REMOVE SCRIPT"
 
 	# Ask for confirmation
-	confirm -e
+	if ! confirm; then return 1; fi # return false
 
 	# Previous checks
 	previousChecks -rv
@@ -55,7 +52,7 @@ mySQLRemoveDbAndUser() {
 	printf "${WHITE}- database name: ${PURPLE}${db}${NC}\n"
 	printf "${WHITE}- username: ${PURPLE}${user}${NC}\n"
 
-	confirm -e
+	if ! confirm; then return 1; fi # return false
 
 	query1="DROP DATABASE IF EXISTS \`${db}\`;"
 	query2="DROP USER '${user}'@'%';"
@@ -70,5 +67,3 @@ mySQLRemoveDbAndUser() {
 
 	printf "${GREEN}MySQL user [${PURPLE}${user}${GREEN}] and database [${PURPLE}${db}${GREEN}] where removed${NC}\n"
 }
-
-mySQLRemoveDbAndUser

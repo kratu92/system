@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Initial config
-. ./inc/init-script.sh
-
 ############################################
 # mySQL Create Database and User
 ############################################
@@ -11,7 +8,7 @@ mySQLCreateDbAndUser() {
 	title "KRATU'S MYSQL DB AND USER CREATE SCRIPT"
 
 	# Ask for confirmation
-	confirm -e
+	if ! confirm; then return 1; fi # return false
 
 	# Previous checks
 	previousChecks -rv
@@ -76,7 +73,7 @@ mySQLCreateDbAndUser() {
 	printf "${WHITE}- database name: ${PURPLE}${db}${NC}\n"
 	printf "${WHITE}- username: ${PURPLE}${user}${NC}\n"
 
-	confirm -e
+	if ! confirm; then return 1; fi # return false
 
 	query1="CREATE DATABASE IF NOT EXISTS \`${db}\`;"
 	query2="CREATE USER IF NOT EXISTS '${user}'@'%' IDENTIFIED BY '${pass}';"
@@ -92,5 +89,3 @@ mySQLCreateDbAndUser() {
 
 	printf "${GREEN}MySQL user [${PURPLE}${user}${GREEN}] and database [${PURPLE}${db}${GREEN}] where created${NC}\n"
 }
-
-mySQLCreateDbAndUser
